@@ -1,0 +1,25 @@
+*{
+  .inactive{
+    //background: linear-gradient(90deg, #000 70%, #fff 80%, #000 100%);
+    //-webkit-background-clip: text;
+    //background-clip: text;
+    //-webkit-text-fill-color: transparent;
+    //background-repeat: no-repeat;
+    background-size: 200%;
+    animation: shine 5s linear forwards;
+
+    @keyframes shine{
+      0%{
+        //background-color: red;
+        background-position-x: 200%;
+
+      }
+      100%{
+        //background-color: green;
+        background-position-x: 0;
+      }
+    }
+  }
+
+
+}
