@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import Skills_data from "./Skills_data";
 import {observer} from "mobx-react";
 import SkillAnimatedLines from "./SkillAnimatedLines";
+import SkillAnimatedLines_v2 from "./SkillAnimatedLines_v2";
 
 const InfoPath = styled.div`
   position: relative;
@@ -34,7 +35,8 @@ const SkillsInfoPath_v2 = observer(() => {
     return (
         <InfoPath>
             {/*<h3>{Skills_data.skillsInfo[Skills_data.activeIndex].title}</h3>*/}
-            <SkillAnimatedLines/>
+            {/*<SkillAnimatedLines/>*/}
+            <SkillAnimatedLines_v2/>
             <div>
                 <SkillHeading>{Skills_data.skillsInfo[Skills_data.activeIndex].title}</SkillHeading>
                 <MainText>{Skills_data.skillsInfo[Skills_data.activeIndex].mainText}</MainText>

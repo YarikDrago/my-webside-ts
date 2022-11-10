@@ -63,20 +63,15 @@ const SkillAnimatedLines = observer(() => {
     const [line1Height, setLine1Height] = useState(Skills_data.line1Height)
     const [line2Height, setLine2Height] = useState(Skills_data.line1Height)
 
-    const mainAnimate = () =>{
-        console.log('main Anime start')
-    }
 
 
     useEffect(()=>{
         setInProp(true)
         console.log("skills amount", Skills_data.skillsInfo.length)
-        mainAnimate()
         if (refBasement.current){
             // console.log((refBasement.current as HTMLElement).offsetHeight)
             // console.log((refBasement.current as HTMLElement).offsetWidth)
             //determine real height of line 2
-
         }
     },[])
 
