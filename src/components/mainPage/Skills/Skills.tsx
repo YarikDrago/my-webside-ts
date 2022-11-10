@@ -3,12 +3,16 @@ import styled from 'styled-components'
 import SkillsInfoPath from "./SkillsInfoPath";
 import SkillsSidebar from "./SkillsSidebar";
 import TextAppearSplit from "../../additionComponents/textAppearSplit/TextAppearSplit";
+import SkillsInfoPath_v2 from "./SkillsInfoPath_v2";
+import SkillsSidebar_v2 from "./SkillsSidebar_v2";
 
 const Backdrop = styled.section`
+  position: relative;
   display: grid;
   box-sizing: border-box;
   grid-template-columns: auto 5fr;
   grid-template-rows: 100px 1fr;
+  //grid-template-rows: 100px 400px;  
   grid-column-gap: 5px;
   grid-row-gap: 20px;
   grid-template-areas: 
@@ -16,7 +20,8 @@ const Backdrop = styled.section`
     "aside main"
   ;
   width: 100vw;
-  height: 75vh;
+  //height: 75vh;
+  //height: 400px;
   //height: 100vh;
   background: white;
   //background-color: #7b7070;
@@ -62,8 +67,10 @@ const Skills = () => {
                     <MainTitle>skills</MainTitle>
                 </TextAppearSplit>
             </MainTitleContainer>
-            <SkillsSidebar/>
-            <SkillsInfoPath/>
+            {/*<SkillsSidebar/>*/}
+            <SkillsSidebar_v2/>
+            {/*<SkillsInfoPath/>*/}
+            <SkillsInfoPath_v2/>
 
         </Backdrop>
     );

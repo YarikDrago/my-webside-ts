@@ -40,8 +40,18 @@ class Skills_data{
 
     activeIndex = 0
     changeActiveIndex(newIndex : number){
+        // console.log("active index", newIndex)
         this.activeIndex = newIndex
     }
+
+    // change and determine when cells appear
+    line1Height = 50
+    line2Height = 0
+    setLine1Height(newY: number){
+        // console.log("new Y", newY)
+        this.line1Height = newY
+    }
+
 }
 
 export default new Skills_data()

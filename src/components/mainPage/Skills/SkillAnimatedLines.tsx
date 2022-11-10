@@ -1,81 +1,99 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components'
 import {CSSTransition} from "react-transition-group";
+import Skills_data from "./Skills_data";
+import {observer} from "mobx-react";
 
 
-const Basement = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: block;
-  height: 100%;
-  width: 200px;
-  background-color: darkcyan;
-`
-const Line1 = styled.svg`
-  --lineWidth: 15px;
+const Basement = styled.div<{line1Height: number}>`
+  position: relative;
+  --rowGap: 10px;
+  //display: flex;
+  display: grid;
+  grid-template-rows: ${props => props.line1Height}px auto;
+  flex-direction: column;
+  //height: 100%;
+  //height: 400px;
+  height: 350px;  
   width: 100%;
-  height: 200px;
-  background-color: #adff00;
-  clip-path: polygon(0% 100%, 100% 100%, 100% 0%, calc(100% - var(--lineWidth)) calc(var(--lineWidth)), 
-    calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)),
-    calc(var(--lineWidth)) calc(100% - var(--lineWidth))
-  );
-  
-  @keyframes skill-line-draw{
-    0%{
-      clip-path: polygon(
-          0% 100%, 
-          100% 100%,
-          100% calc(100% - var(--lineWidth) * 2),
-          calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)), 
-          calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)),
-          calc(var(--lineWidth)) calc(100% - var(--lineWidth))
-      );      
-    }
-    100%{
-      clip-path: polygon(
-          0% 100%, 
-          100% 100%, 
-          100% 0%, 
-          calc(100% - var(--lineWidth)) calc(var(--lineWidth)), 
-          calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)),
-          calc(var(--lineWidth)) calc(100% - var(--lineWidth))
-      );
-    
-    }
-  }
-    
-
-    
-  &.skill-transition-line-enter{
-    background-color: orangered;
-    clip-path: polygon(
-      0% 100%, 
-      100% 100%,
-      100% calc(100% - var(--lineWidth) * 2),
-      calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)), 
-      calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)),
-      calc(var(--lineWidth)) calc(100% - var(--lineWidth))
-    );
-  }
-  &.skill-transition-line-enter-active{
-    background-color: orange;
-    
-    transition: background-color 3s linear, clip-path 3s linear;
-    animation: skill-line-draw 1s linear forwards;
-    
-  }
+  max-height: 100%;
+  //background-color: darkcyan;
 `
-const SkillAnimatedLines = () => {
+
+const Line1= styled.svg`
+  --lineWidth: 10px;
+  --lineGap: 10px;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: #0b885e;
+  clip-path: polygon(
+    0% calc(100% - var(--lineGap)/2), 
+    100% calc(100% - var(--lineGap)/2), 
+    100% 0%, 
+    calc(100% - var(--lineWidth)) var(--lineWidth),
+    calc(100% - var(--lineWidth)) calc(100% - var(--lineGap)/2 - var(--lineWidth)),
+    var(--lineWidth) calc(100% - var(--lineGap)/2 - var(--lineWidth))
+  );
+`
+
+const Line2 = styled.svg`
+  --lineWidth: 10px;
+  --lineGap: 10px;
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  background-color: #0b885e;
+  clip-path: polygon(
+    0% calc(var(--lineGap)/2), 
+    100% calc(var(--lineGap)/2),
+    100% 100%,
+    calc(100% - var(--lineWidth)) calc(100% - var(--lineWidth)),
+    calc(100% - var(--lineWidth)) calc(var(--lineGap) / 2 + var(--lineWidth)),
+    var(--lineWidth) calc(var(--lineGap) / 2 + var(--lineWidth))
+  );
+`
+
+const SkillAnimatedLines = observer(() => {
     const [inProp, setInProp]= useState(false)
+    const refBasement = useRef(null)
+    const [line1Height, setLine1Height] = useState(Skills_data.line1Height)
+    const [line2Height, setLine2Height] = useState(Skills_data.line1Height)
+
+    const mainAnimate = () =>{
+        console.log('main Anime start')
+    }
+
 
     useEffect(()=>{
         setInProp(true)
+        console.log("skills amount", Skills_data.skillsInfo.length)
+        mainAnimate()
+        if (refBasement.current){
+            // console.log((refBasement.current as HTMLElement).offsetHeight)
+            // console.log((refBasement.current as HTMLElement).offsetWidth)
+            //determine real height of line 2
+
+        }
     },[])
 
+    useEffect(()=>{
+        // console.log("new active index", Skills_data.activeIndex)
+        // setCenterYcoord(Skills_data.centerYActiveElem)
+        setLine1Height(Skills_data.line1Height)
+    },[Skills_data.activeIndex])
+
+
+
     return (
-        <Basement>
+        <Basement
+            ref = {refBasement}
+            line1Height={line1Height}
+
+        >
             <CSSTransition
                 in={inProp}
                 classNames={'skill-transition-line'}
@@ -83,11 +101,18 @@ const SkillAnimatedLines = () => {
                 unmountOnExit
             >
                 <Line1/>
+                {/*<Line1Temp line1Height={line1Height}/>*/}
             </CSSTransition>
-
-
+            <CSSTransition
+                in={inProp}
+                classNames={'skill-transition-line'}
+                timeout={5000}
+                unmountOnExit
+            >
+                <Line2 />
+            </CSSTransition>
         </Basement>
     );
-};
+})
 
 export default SkillAnimatedLines;

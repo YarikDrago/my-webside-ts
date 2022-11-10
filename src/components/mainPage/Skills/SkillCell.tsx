@@ -37,12 +37,25 @@ interface ISkillCell{
     index?: number
 }
 const SkillCell = ({percentValue, imgPath, key, index}: ISkillCell) => {
+
+    function determineCenterYOfCell(cellElem: HTMLElement){
+        // console.log(cellElem.offsetTop)
+        const parentElem = cellElem.parentElement
+        if (parentElem){
+            // console.log(parentElem.offsetTop, cellElem.offsetHeight/2)
+            // console.log("center coordinate",  cellElem.offsetTop - parentElem.offsetTop + cellElem.offsetHeight/2)
+            return cellElem.offsetTop - parentElem.offsetTop + cellElem.offsetHeight/2
+        }
+        return 0
+    }
+
     return (
         <Cell
             key={key}
             onMouseEnter={(e : React.MouseEvent)=>{
                 if (index !== undefined){
                     Skills_data.changeActiveIndex(index)
+                    Skills_data.setLine1Height(determineCenterYOfCell(e.target as HTMLElement))
                 }
                 (e.target as HTMLElement).getElementsByTagName('img')[0].classList.add('hovered')
             }}

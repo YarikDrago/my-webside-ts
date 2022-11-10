@@ -20,6 +20,7 @@ interface ICanvas{
     percentage: number
     animationDur?: number
 }
+
 const PercentageRoundCanvas = ({percentage, animationDur}: ICanvas) => {
     const refCanvas = useRef(null)
     const side = 100
