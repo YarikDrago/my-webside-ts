@@ -15,6 +15,11 @@ const StyledSkillsSideBar = styled.nav`
   padding-right: 10px;
   grid-area: aside;
   //background-color: darkgoldenrod;
+  @media screen and (max-width: 800px){
+    flex-direction: row;
+    height: 100px;
+    padding-right: 0;
+  }
 `
 
 interface IElems{

@@ -46,10 +46,14 @@ class Skills_data{
 
     // change and determine when cells appear
     line1Height = 50
-    line2Height = 0
+    line1Width  = 50
     setLine1Height(newY: number){
-        // console.log("new Y", newY)
+        console.log("new Y", newY)
         this.line1Height = newY
+    }
+    setLine1Width(newX: number){
+        console.log("new X", newX)
+        this.line1Width = newX
     }
 
 }

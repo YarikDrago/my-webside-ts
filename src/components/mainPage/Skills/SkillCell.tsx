@@ -49,6 +49,17 @@ const SkillCell = ({percentValue, imgPath, key, index}: ISkillCell) => {
         return 0
     }
 
+    function determineCenterXOfCell(cellElem: HTMLElement){
+        // console.log(cellElem.offsetTop)
+        const parentElem = cellElem.parentElement
+        if (parentElem){
+            // console.log(parentElem.offsetTop, cellElem.offsetHeight/2)
+            // console.log("center coordinate",  cellElem.offsetTop - parentElem.offsetTop + cellElem.offsetHeight/2)
+            return cellElem.offsetLeft - parentElem.offsetLeft + cellElem.offsetWidth/2
+        }
+        return 0
+    }
+
     return (
         <Cell
             key={key}
@@ -56,6 +67,7 @@ const SkillCell = ({percentValue, imgPath, key, index}: ISkillCell) => {
                 if (index !== undefined){
                     Skills_data.changeActiveIndex(index)
                     Skills_data.setLine1Height(determineCenterYOfCell(e.target as HTMLElement))
+                    Skills_data.setLine1Width(determineCenterXOfCell(e.target as HTMLElement))
                 }
                 (e.target as HTMLElement).getElementsByTagName('img')[0].classList.add('hovered')
             }}

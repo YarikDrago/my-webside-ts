@@ -12,9 +12,6 @@ const Basement = styled.div<{line1Height: number}>`
   //display: flex;
   display: grid;
   grid-template-rows: ${props => props.line1Height}px auto;
-  flex-direction: column;
-  //height: 100%;
-  //height: 400px;
   height: 350px;  
   width: 100%;
   max-height: 100%;
@@ -78,7 +75,7 @@ const Line2 = styled.div<{color1: string, color2: string}>`
   }
 `
 
-const SkillAnimatedLines_v2 = observer(() => {
+const SkillAnimatedLines_v_l = observer(() => {
     const linesGap = 10
     const lineWidth = 10
     const refBasement = useRef(null)
@@ -254,4 +251,4 @@ const SkillAnimatedLines_v2 = observer(() => {
     );
 })
 
-export default SkillAnimatedLines_v2;
+export default SkillAnimatedLines_v_l;
