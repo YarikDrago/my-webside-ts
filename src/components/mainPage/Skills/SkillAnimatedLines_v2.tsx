@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import {CSSTransition} from "react-transition-group";
 import Skills_data from "./Skills_data";
 import {observer} from "mobx-react";
+import SkillAnimationLines_data from "./SkillAnimationLines_data";
 
 
 const Basement = styled.div<{line1Height: number}>`
@@ -20,25 +21,61 @@ const Basement = styled.div<{line1Height: number}>`
   //background-color: darkcyan;
 `
 
-const Line1= styled.svg`
-  --lineWidth: 10px;
-  --lineGap: 10px;
+const Line1 = styled.div<{color1: string, color2: string}>`
+  --color1: ${props => props.color1};
+  --color2: ${props => props.color2};
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #0b885e, #50ec4a, #0b885e);
+  background: linear-gradient(45deg, var(--color1), var(--color2), var(--color1));
+  ::before{
+      position: absolute;
+      content: "";
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(45deg, var(--color2), var(--color1), var(--color2));
+      transition: opacity 0.5s linear;
+      opacity: 0; 
+  }
+  &.alter{
+    ::before{
+      opacity: 1;
+    }
+  }
 `
 
-const Line2 = styled.svg`
-  --lineWidth: 10px;
-  --lineGap: 10px;
+const Line2 = styled.div<{color1: string, color2: string}>`
+  --color1: ${props => props.color1};
+  //--color1: orange;
+  --color2: ${props => props.color2};
+  //--color2: blue;
   position: relative;
   display: block;
   width: 100%;
   height: 100%;
   min-height: 0;
-  background: linear-gradient(-45deg, #0b885e, #50ec4a, #0b885e);
+  //background: linear-gradient(-45deg, #0b885e, #50ec4a, #0b885e);
+  background-image: linear-gradient(-45deg, var(--color1), var(--color2), var(--color1));
+  ::before{
+      position: absolute;
+      content: "";  
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(-45deg, var(--color2), var(--color1), var(--color2));
+      //background: linear-gradient(-45deg, #0b885e, #50ec4a, #0b885e);
+      transition: opacity 0.5s linear;
+      opacity: 0; 
+  }
+  &.alter{
+    ::before{
+      opacity: 1;
+    }
+  }
 `
 
 const SkillAnimatedLines_v2 = observer(() => {
@@ -49,11 +86,10 @@ const SkillAnimatedLines_v2 = observer(() => {
     const refLine1 = useRef(null)
     const refLine2 = useRef(null)
 
-
     const mainAnimate = () =>{
         console.log('main Anime start 2')
         const startTime = Date.now()
-        const animeDuration = 3000
+        const animeDuration = 1000
         let horizontalWidth = 0
         const horizontalTime = 0.3 // percentage
         let section1Time = 0
@@ -204,8 +240,16 @@ const SkillAnimatedLines_v2 = observer(() => {
             ref = {refBasement}
             line1Height={line1Height}
         >
-            <Line1 ref={refLine1}/>
-            <Line2 ref={refLine2}/>
+            <Line1
+                className = {SkillAnimationLines_data.alterMode ? 'alter' : ""}
+                color1 = {SkillAnimationLines_data.color1}
+                color2 = {SkillAnimationLines_data.color2}
+                ref={refLine1}/>
+            <Line2
+                className = {SkillAnimationLines_data.alterMode ? 'alter' : ""}
+                color1 = {SkillAnimationLines_data.color1}
+                color2 = {SkillAnimationLines_data.color2}
+                ref={refLine2}/>
         </Basement>
     );
 })
