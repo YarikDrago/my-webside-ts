@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import languages_data from '../../../languages_data';
 import ShortAboutMe_data from './ShortAboutMe_data';
 import {observer} from "mobx-react";
+import MovingLetters from "../../additionComponents/movingLetters/MovingLetters";
 
 const StyledShortAboutMe = styled.section`
   //margin: 50px;
@@ -41,15 +42,22 @@ const ShortAboutMe = observer(() => {
     return (
         <StyledShortAboutMe>
             {/*name*/}
-            <h1>{ShortAboutMe_data.text.name[languages_data.activeLang.abr as keyof object]}</h1>
+            <MovingLetters>
+                <h1>{ShortAboutMe_data.text.name[languages_data.activeLang.abr as keyof object]}</h1>
+            </MovingLetters>
             {/*surname*/}
-            <h1>{ShortAboutMe_data.text.surname[languages_data.activeLang.abr as keyof  object]}</h1>
+            <MovingLetters>
+                <h1>{ShortAboutMe_data.text.surname[languages_data.activeLang.abr as keyof  object]}</h1>
+            </MovingLetters>
             {/*/!*profession*!/*/}
             <h3
                 style={{margin: '0'}}
             >{ShortAboutMe_data.text.position[languages_data.activeLang.abr as keyof object]}</h3>
             {/*slogan*/}
-            <h1>{ShortAboutMe_data.text.slogan[languages_data.activeLang.abr as keyof object]}</h1>
+            <MovingLetters>
+                <h1>{ShortAboutMe_data.text.slogan[languages_data.activeLang.abr as keyof object]}</h1>
+            </MovingLetters>
+
 
         </StyledShortAboutMe>
     );
