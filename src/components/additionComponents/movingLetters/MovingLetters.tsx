@@ -1,6 +1,7 @@
 import React, {ReactElement, useEffect, useState} from 'react';
 import styled from 'styled-components'
 import {observer} from "mobx-react";
+import languages_data from "../../../languages_data";
 
 
 const StyledLetter = styled.span`  
@@ -38,12 +39,18 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
     },[])
 
     useEffect(()=>{
-        console.log("elems data", elemsData)
+        console.log("language has been changed")
+        setElemsData([])
+        SeparateTextToWords(text)
+    },[languages_data.activeLang.abr])
+
+    useEffect(()=>{
+        // console.log("elems data", elemsData)
     },[elemsData])
 
     function SeparateTextToWords(t: string){
         const words = t.split(" ")
-        console.log("words", words)
+        // console.log("words", words)
         words.forEach((elem, index)=>{
             setElemsData(prevState => [...prevState, SeparateWordToLetters(elem)])
             // setElemsData(prevState => [...prevState, index])
@@ -52,7 +59,7 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
 
     function SeparateWordToLetters(w: string){
         const letters = w.split("")
-        console.log("letters", letters)
+        // console.log("letters", letters)
         return letters
     }
 
@@ -76,7 +83,6 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
     function renderElems(data : Array<string[]>){
         console.log("data", data)
         return data.map((word, wordIndex) => {
-            console.log("data word", wordIndex, word)
             const spannedWordInner = word.map((letter, letterIndex) => {
                 return <StyledLetter
                     // style = {style}
