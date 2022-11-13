@@ -1,5 +1,6 @@
 import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components'
+import mainAnime from "./mainAnimeFct";
 
 const StyledCanvas = styled.canvas`
   cursor: pointer;
@@ -12,18 +13,11 @@ const BackdropHexagonMove = () => {
     const refCanvas = useRef(null)
 
     useEffect(()=>{
-        mainAnime()
-    },[])
-
-
-    function mainAnime(){
         const canvasElem = refCanvas.current as HTMLCanvasElement | null
-        if (canvasElem === null){
-            return
+        if (canvasElem !== null){
+            mainAnime(canvasElem)
         }
-        const context = canvasElem.getContext('2d')
-    }
-
+    },[])
 
 
     return (
