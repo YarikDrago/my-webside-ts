@@ -13,29 +13,29 @@ interface IElectron{
 function mainAnime(elem : HTMLCanvasElement){
     console.log("canvas main anime")
     const context = elem.getContext('2d')
+    const electronColor = 'rgb(74,196,46)'
     const electronRadius = 1
     let electrons: Array<IElectron> = []
     // length of hexagon edge
     const edgeLength = 50
-    const maxElectrons = 50
+    const maxElectrons = 10
+    let lastTime = Date.now()
     requestAnimationFrame(anime)
 
     function anime(){
         const electronsForDelete: Array<number> = []
-        // console.log("anime")
         if (context === null){
             return
         }
         //condition of creation of new electron
         if (Math.random() > 0.9 && electrons.length < maxElectrons){
-            // console.log('create new electron', electrons.length)
+            console.log('create new electron', electrons.length)
             const newElectron = createNewElectron(elem)
-            // console.log("newElec", newElectron)
             electrons.push(newElectron)
         }
-        // fillBackdrop(elem, context)
-        electrons = workWithElectrons(electrons, electronsForDelete, context, electronRadius, edgeLength)
-        //rewrite input data for function drawElectron
+        fillBackdrop(elem, context)
+        electrons = workWithElectrons(electrons, electronsForDelete, context, electronRadius, edgeLength, lastTime, electronColor)
+        lastTime = Date.now()
 
 
         requestAnimationFrame(anime)
@@ -49,21 +49,32 @@ function workWithElectrons(
     electronsForDelete: Array<number>,
     context: CanvasRenderingContext2D,
     electronRadius: number,
-    edgeLength: number
+    edgeLength: number,
+    lastTime: number,
+    electronColor: string
 ){
     electrons.forEach((electron, electronIndex)=>{
         if (electron.lifeStart + electron.lifelong < Date.now()){
             electronsForDelete.push(electronIndex)
         } else {
-            let x = electron.posX + electron.dirX * (Date.now() - electron.lifeStart)/10
-            // let x = electron.posX + Math.sin(electron.angle) * (Date.now() - electron.lifeStart)/10
-            if (x >= Math.sin(edgeLength)){
-                // x = electron.posX + Math.sin(edgeLength)
-                // electron.posX = x
-                // [electron.angle, electron.dirX, electron.dirY] = changeElectronDirection(electron.angle)
+            if (electron.edgeDist < edgeLength){
+                const x = electron.posX + electron.edgeDist * electron.dirX
+                const y = electron.posY + electron.edgeDist * electron.dirY
+                drawElectron(context, x, y, electronRadius, electronColor)
+                electron.edgeDist += (Date.now()-lastTime)/10
+            } else {
+                const x = electron.posX + edgeLength * electron.dirX
+                const y = electron.posY + edgeLength * electron.dirY
+                drawElectron(context, x, y, electronRadius, electronColor)
+                electron.posX = x
+                electron.posY = y
+                electron.edgeDist = 0
+
+                electron.angle = changeElectronDirection(electron.angle)
+                electron.dirX = Math.sin(electron.angle)
+                electron.dirY = Math.cos(electron.angle)
+
             }
-            const y = electron.posY + electron.dirY * (Date.now() - electron.lifeStart)/10
-            drawElectron(context, x, y, electronRadius, 'rgb(156,46,196)')
         }
     })
     electronsForDelete.forEach((elem)=>{
@@ -91,16 +102,11 @@ function createNewElectron(canvasElem : HTMLCanvasElement){
 
 function changeElectronDirection(direction: number){
     const newAngelDir = Math.random() * 2 - 1 >= 0 ? 1 : -1
-    console.log(direction, direction + newAngelDir * Math.PI / 3)
-    let newDir = direction + newAngelDir * Math.PI / 3
-    return [newDir, Math.sin(newDir), Math.cos(newDir)]
-
-
-
+    return direction = direction + newAngelDir * Math.PI / 3
 }
 
 function fillBackdrop(elem : HTMLCanvasElement, context: CanvasRenderingContext2D){
-    context.fillStyle = 'rgba(229,46,46, 0.05)'
+    context.fillStyle = 'rgba(0,0,0,0.01)'
     context.beginPath()
     context.fillRect(0,0, elem.width, elem.height)
 }
