@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "scripts": {
     "start": "webpack serve --config webpack.dev.config.ts",
-    "build": "webpack --config webpack.prod.config.ts"
+    "build": "webpack --config webpack.dev.config.ts"
   },
   "dependencies": {
     "@types/mini-css-extract-plugin": "^2.5.1",
     "@types/react-transition-group": "^4.4.5",
     "@types/styled-components": "^5.1.26",
     "axios": "^1.1.2",
+    "dotenv": "^16.0.3",
     "email-validator": "^2.0.4",
     "isemail": "^3.2.0",
     "mobx": "^6.6.2",
@@ -36,6 +37,7 @@
     "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
+    "dotenv-webpack": "^8.0.1",
     "eslint": "^8.11.0",
     "eslint-plugin-react": "^7.29.3",
     "eslint-plugin-react-hooks": "^4.3.0",

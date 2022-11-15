@@ -3,9 +3,13 @@ import { Configuration as WebpackConfiguration, HotModuleReplacementPlugin } fro
 import { Configuration as WebpackDevServerConfiguration } from 'webpack-dev-server';
 import HtmlWebpackPlugin from "html-webpack-plugin";
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+import dotenv from 'dotenv'
+import { DefinePlugin } from 'webpack'
 // const HTMLWebpackPlugin = require('html-webpack-plugin')
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import ESLintPlugin from "eslint-webpack-plugin";
+
+
 
 interface Configuration extends WebpackConfiguration {
   devServer?: WebpackDevServerConfiguration;
@@ -46,7 +50,11 @@ const config: Configuration = {
     new ESLintPlugin({
       extensions: ["js", "jsx", "ts", "tsx"],
     }),
+    new DefinePlugin({
+      'process.env': JSON.stringify(dotenv.config().parsed)
+    })
   ],
+
   module: {
     rules: [
       {

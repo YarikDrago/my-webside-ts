@@ -50,7 +50,7 @@ async function sendMessage(name: string, surname: string, email: string, telepho
     //await axios.post('http://localhost:6600/send_email', {
     contactMe_data.changeMessageStatus(0)
     contactMe_data.setLoaderVisibility(true)
-    await axios.post('http://84.201.172.15:6600/send_email', {
+    await axios.post('http://51.250.75.222:6600/send_email', {
         //await axios.post(process.env.SERVER_URL, {
         "name": name,
         "surname": surname,

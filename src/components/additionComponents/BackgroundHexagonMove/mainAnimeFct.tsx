@@ -11,7 +11,7 @@ interface IElectron{
 }
 
 function mainAnime(elem : HTMLCanvasElement){
-    console.log("canvas main anime")
+    // console.log("canvas main anime")
     const context = elem.getContext('2d')
     const electronColor = 'rgb(74,196,46)'
     const electronRadius = 1
@@ -29,7 +29,7 @@ function mainAnime(elem : HTMLCanvasElement){
         }
         //condition of creation of new electron
         if (Math.random() > 0.9 && electrons.length < maxElectrons){
-            console.log('create new electron', electrons.length)
+            // console.log('create new electron', electrons.length)
             const newElectron = createNewElectron(elem)
             electrons.push(newElectron)
         }
