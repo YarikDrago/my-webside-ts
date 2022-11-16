@@ -1,9 +1,13 @@
-import React, { Fragment, useState } from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import styled from 'styled-components'
 import axios from "axios";
 import LittleLoader from "../../Loaders/LittleLoader";
+import workWithData from "./workWithData";
+// import FootballModal from "./FootballModal";
+import {useNavigate} from "react-router-dom";
+import football_data from "./football_data";
 // import img from './images/football_filed.jpeg'
-const img = require('./images/football_field.jpeg')
+// const img = require('./images/football_field.jpeg')
 
 const StyledBtn = styled.div<{imgUrl: string}>`
   position: absolute;
@@ -37,15 +41,24 @@ const StyledBtn = styled.div<{imgUrl: string}>`
   }
 `
 const FootballBtn = () => {
+    let navigate = useNavigate();
     const [dataWaiter, setDataWaiter] = useState(false)
+    const [data, setData] = useState<Array<Array<any>>>([])
+
+    useEffect(()=>{
+       if (data.length !== 0){
+           navigate('/football')
+       }
+    },[data])
 
     async function getTableData(){
         try{
             setDataWaiter(true)
-            await axios.get('http://51.250.75.222:6600/football_data').then(res => {
-            // await axios.get('http://'+ `${process.env.SERVER_IP}:${process.env.MAIN_PORT}`+ +'/football_data').then(res => {
-                console.log("football data:", res.data)
+            await axios.get(`http://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
                 setDataWaiter(false)
+                setData(res.data)
+                football_data.setNewFootballData(res.data)
+                workWithData(res.data)
             })
         }catch(e)
         {
@@ -62,6 +75,7 @@ const FootballBtn = () => {
                 <h3>Football Prediction Tournament</h3>
             </StyledBtn>
             {dataWaiter && <LittleLoader loaderText={'Loading data...'}/>}
+            {/*{data.length !== 0 && <FootballModal/>}*/}
         </Fragment>
 
     );
