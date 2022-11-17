@@ -1,4 +1,4 @@
-function workWithData(data : Array<Array<any>>){
+function workWithData(data : object){
     console.log("work with data funciton")
     console.log("data", data)
     // console.log("data", data[0])
