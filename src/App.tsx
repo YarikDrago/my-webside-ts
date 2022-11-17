@@ -7,6 +7,7 @@ import contactMe_data from "./components/contactMe/ContactMe_data";
 import ContactMeModalV2 from "./components/contactMe/modal/ContactMeModalV2";
 import {Route, Routes} from "react-router";
 import FootballModal from "./components/mainPage/footballPredictionTournament/FootballModal";
+import TestLinkPage from "./TestLinkPage";
 
 const App = observer(() => {
     return (
@@ -14,6 +15,9 @@ const App = observer(() => {
             <Routes>
                 <Route path={'/'} element={<MainPage_v1/>}/>
                 <Route path={'/football'} element={<FootballModal/>}/>
+                <Route path={'/test'} element={<TestLinkPage/>}/>
+                <Route path={'/*'} element={<MainPage_v1/>}/>
+
             </Routes>
             {/*<MainPage_v1/>*/}
             <NavbarHeader_v1/>

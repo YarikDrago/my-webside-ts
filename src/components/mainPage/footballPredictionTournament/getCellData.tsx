@@ -28,7 +28,7 @@ function getCellData(row: number, col: number){
     const cellData = toJS(Object.values(((football_data.footballData as IFootballTableData).tableData.table as object))
         .find((elem: ICell) => elem.row === row && elem.column === col )) as ICell
     // console.log("cell data", cellData.row, cellData.column)
-    // console.log("cell data", cellData.rowIndex)
+    // console.log("cell data", cellData)
     if (cellData.rowIndex){
         return cellData.rowIndex
     }
@@ -38,22 +38,72 @@ function getCellData(row: number, col: number){
     if (cellData.matchStatus){
         return cellData.matchStatus
     }
-    if (cellData.command1){
-        return formCommandCell(cellData.command1)
+    if ("command1" in cellData){
+        if (cellData.command1){
+            return formCommandCell(cellData.command1)
+        } else {
+            return "unknown"
+        }
     }
-    if (cellData.command2){
-        return formCommandCell(cellData.command2)
+    if ("command2" in cellData){
+        if (cellData.command2){
+            return formCommandCell(cellData.command2)
+        } else {
+            return "unknown"
+        }
     }
+
+    if ("round" in cellData){
+        if (cellData.round){
+            return cellData.round
+        } else {
+            return "-"
+        }
+    }
+
+    if ("matchResult" in cellData){
+        if (cellData.matchResult){
+            return cellData.matchResult
+        } else {
+            return "-"
+        }
+    }
+
+    if ("prediction" in cellData){
+        if (cellData.prediction){
+            return cellData.prediction
+        } else {
+            return "-"
+        }
+    }
+
+    if ("point" in cellData){
+        if (cellData.point){
+            return cellData.point
+        } else {
+            return "-"
+        }
+    }
+
+    if ("penalty" in cellData){
+        if (cellData.penalty){
+            return cellData.penalty
+        } else {
+            return "-"
+        }
+    }
+
+
     return `r${row}c${col}`
 }
 
 
 function recountDate(date: string){
     const newDate = new Date(Date.parse(date))
-    let options1: Intl.DateTimeFormatOptions = {
+    const options1: Intl.DateTimeFormatOptions = {
         day: "numeric", month: "numeric", year: "numeric"
     };
-    let options2: Intl.DateTimeFormatOptions = {
+    const options2: Intl.DateTimeFormatOptions = {
         hour: "2-digit", minute: "2-digit", hour12: false,
     };
     return <Fragment>
@@ -62,12 +112,13 @@ function recountDate(date: string){
     </Fragment>
 }
 
-function formCommandCell(country: string){
-    // console.log("find flag" )
-    // const FlagImg =
+function formCommandCell(country: string | null){
+    // console.log("country", country)
+    if (country === null){
+        return "unknown"
+    }
     return <Fragment>
         <FootballLittleFlag country={country}/>
-        {/*<img src={`https://countryflagsapi.com/png/${country}`} alt=""/>*/}
         <p>{country}</p>
     </Fragment>
 }
