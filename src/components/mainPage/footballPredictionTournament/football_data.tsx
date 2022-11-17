@@ -10,6 +10,11 @@ class football_data{
     setNewFootballData(newData: Object){
         this.footballData = newData
     }
+
+    firstURL = true
+    setFirstURLChecked(){
+        this.firstURL = false
+    }
 }
 
 export default new football_data()

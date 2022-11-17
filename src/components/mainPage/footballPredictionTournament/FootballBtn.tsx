@@ -42,23 +42,32 @@ const StyledBtn = styled.div<{imgUrl: string}>`
   }
 `
 const FootballBtn = observer(() => {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
     const [dataWaiter, setDataWaiter] = useState(false)
+    const [goToFootballPage, setGoToFootballPage] = useState(false)
     // const [data, setData] = useState<Object>({})
 
     useEffect(()=>{
-       if (Object.keys(football_data.footballData).length !== 0){
-           navigate('/football')
-       }
+       football_data.setFirstURLChecked()
     },[football_data.footballData])
 
+    useEffect(()=>{
+        if (goToFootballPage){
+            console.log("go to football page")
+            navigate('/football')
+        }
+    },[goToFootballPage])
+
     async function getTableData(){
+        console.log("click")
         try{
             setDataWaiter(true)
             await axios.get(`http://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
+            // await axios.get(`http://${process.env.SERVER_IP}:6001/football_data`).then(res => {
                 setDataWaiter(false)
                 // setData(res.data)
                 football_data.setNewFootballData(res.data)
+                setGoToFootballPage(true)
             })
         }catch(e)
         {

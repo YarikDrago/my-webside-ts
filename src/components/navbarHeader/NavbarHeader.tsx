@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components'
 import SocialBar_v1 from "./socialBar/SocialBar_v1";
 import ChoseLang_v1 from "./choseLang/ChoseLang_v1";
 import contactMeData from "../contactMe/ContactMe_data";
+import GoBackBtn from "./GoBackBtn/GoBackBtn";
+import {useLocation, useNavigate} from "react-router";
 
 const Basement = styled.section`
   position: fixed;
@@ -33,11 +35,20 @@ const ContactBtn = styled.button`
 
 
 const NavbarHeader_v1 = () => {
+    const [currentURL, setCurrentURL] = useState('/')
+    const location = useLocation()
 
+
+    useEffect(()=>{
+        console.log("location", window.location.pathname)
+        console.log("navigate", location.pathname)
+        setCurrentURL(location.pathname)
+    },[location.pathname])
 
     return (
         <Basement>
-            <SocialBar_v1/>
+            {currentURL === '/' && <SocialBar_v1/>}
+            {currentURL !== '/' && <GoBackBtn/>}
             <ChoseLang_v1/>
             <ContactBtn>
                 <ContactMeBtnImg

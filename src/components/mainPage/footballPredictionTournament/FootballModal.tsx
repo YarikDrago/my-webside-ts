@@ -6,6 +6,7 @@ import CheckboxElem from "./CheckboxElem";
 import FootballTable from "./FootballTable";
 import LittleLoader from "../../Loaders/LittleLoader";
 import axios from "axios";
+import FootballChat from "./FootballChat";
 
 const Basement = styled.section<{imgUrl: string}>`
   position: fixed;
@@ -72,11 +73,10 @@ const FootballModal = observer(() => {
     const [dataWaiter, setDataWaiter] = useState(false)
 
     useEffect(()=>{
-        if (Object.keys(football_data.footballData).length === 0){
-            console.log("data is empty")
+        if (football_data.firstURL){
             getTableData()
         }
-    },[football_data.footballData])
+    },[])
 
     async function getTableData(){
         try{
@@ -111,6 +111,7 @@ const FootballModal = observer(() => {
                     </TableContainer>
                 </Fragment>
             }
+            <FootballChat/>
             {dataWaiter && <LittleLoader loaderText={'Loading data...'}/>}
         </Basement>
     );
