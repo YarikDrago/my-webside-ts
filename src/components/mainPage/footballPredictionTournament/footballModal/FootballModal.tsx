@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
 import styled from 'styled-components'
 import football_data from "../football_data";
 import {observer} from "mobx-react";
@@ -10,9 +10,9 @@ import languages_data from "../../../../languages_data";
 import footballOptions_data from "./options/footballOptions_data";
 
 const Basement = styled.section<{imgUrl: string}>`
-  position: fixed;
-  top: 0;
-  left: 0;
+  //position: fixed;
+  //top: 0;
+  //left: 0;
   display: grid;
   //flex-direction: column;
   //justify-content: center;
@@ -59,8 +59,10 @@ const TableContainer = styled.div`
 
 export interface IFootballTableData {
     participants : {
-        totalResult: string,
-        totalPenalty: string,
+        [key: string]: {
+            totalResult: string,
+            totalPenalty: string
+        }
     },
     countries : Array<string>,
     tableData: {
@@ -72,10 +74,18 @@ export interface IFootballTableData {
 
 const FootballModal = observer(() => {
     const [dataWaiter, setDataWaiter] = useState(false)
+    const refTableContainer = useRef(null)
+    const [tableLeft, setTableLeft] = useState(0)
 
     useEffect(()=>{
         if (football_data.firstURL){
             getTableData()
+        }
+        const containerElem = refTableContainer.current as HTMLElement | null
+        if (containerElem !== null){
+            containerElem.addEventListener("scroll", ()=>{
+                console.log("container scroll")
+            })
         }
     },[])
 
@@ -94,6 +104,19 @@ const FootballModal = observer(() => {
         }
     }
 
+    function tableScroll(e: React.UIEvent<HTMLElement>){
+        console.log("scroll", e.currentTarget.scrollLeft)
+        if (tableLeft - e.currentTarget.scrollLeft < 0){
+            footballModal_data.changePropSide(true)
+        }
+        if (tableLeft - e.currentTarget.scrollLeft > 0){
+            footballModal_data.changePropSide(false)
+        }
+        setTableLeft(e.currentTarget.scrollLeft)
+
+
+    }
+
     return (
         <Basement
             imgUrl = {require('../images/football_field.jpeg').default}
@@ -108,7 +131,10 @@ const FootballModal = observer(() => {
                         {/*    <CheckboxElem text={participant}/>*/}
                         {/*)}*/}
                     </Options>
-                    <TableContainer>
+                    <TableContainer
+                        // onScroll = {(e)=>{tableScroll(e)}}
+                        ref={refTableContainer}
+                    >
                         <FootballTable/>
                     </TableContainer>
                 </Fragment>

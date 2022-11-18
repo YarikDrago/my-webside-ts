@@ -9,6 +9,7 @@ import DateTimeFormat = Intl.DateTimeFormat;
 import FootballLittleFlag from "./FootballLittleFlag";
 import commandsLang_data from "./commandsLang_data";
 import languages_data from "../../../../languages_data";
+import footballTableLang_data from "./footballTableLang_data";
 
 interface ICell{
     row: number,
@@ -37,7 +38,12 @@ function getCellData(row: number, col: number){
     if (cellData.matchDate){
         return recountDate(cellData.matchDate)
     }
+    // scheduled or not
     if (cellData.matchStatus){
+        // console.log(cellData.matchStatus.toLowerCase())
+        if (cellData.matchStatus.toLowerCase() === 'scheduled'){
+            return footballTableLang_data.scheduled[languages_data.activeLang.abr as keyof object]
+        }
         return cellData.matchStatus
     }
     if ("command1" in cellData){

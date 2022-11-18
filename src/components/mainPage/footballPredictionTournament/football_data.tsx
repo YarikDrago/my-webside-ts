@@ -10,7 +10,7 @@ class football_data{
     setNewFootballData(newData: Object){
         this.footballData = newData
     }
-
+    // if directly visit football page
     firstURL = true
     setFirstURLChecked(){
         this.firstURL = false

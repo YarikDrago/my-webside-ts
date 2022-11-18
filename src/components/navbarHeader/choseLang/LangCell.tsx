@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import ArrowTriangleShow_v1 from "../../additionComponents/arrows/Triangles/ArrowTriangleShow";
+import {observer} from "mobx-react";
 
 const StyledCell = styled.li<{top?: number, delayIn?: number}>`
     display: grid;
@@ -83,7 +84,7 @@ interface ILangCell{
     delayIn? : number
 }
 
-const LangCell_v1 = ({key, className, clickFnc, lang, flagPath, arrowUp, top, delayIn}:ILangCell) => {
+const LangCell_v1 = observer( ({key, className, clickFnc, lang, flagPath, arrowUp, top, delayIn}:ILangCell) => {
     return (
         <StyledCell
             key={key}
@@ -100,7 +101,7 @@ const LangCell_v1 = ({key, className, clickFnc, lang, flagPath, arrowUp, top, de
             }
         </StyledCell>
     );
-};
+})
 
 export default LangCell_v1;
 
