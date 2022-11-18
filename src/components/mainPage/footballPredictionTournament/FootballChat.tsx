@@ -33,7 +33,8 @@ const SendBtn = styled.button`
 `
 const FootballChat = () => {
     // const socket = new WebSocket('ws://localhost:5000')
-    const socket = new WebSocket('ws://localhost:6600/footballchat')
+    // const socket = new WebSocket('ws://localhost:6600/footballchat')
+    const socket = new WebSocket(`ws://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/footballchat`)
     const [message, setMessage] = useState('')
     const [chatMsg, setChatMsg] = useState<Array<string>>([])
 

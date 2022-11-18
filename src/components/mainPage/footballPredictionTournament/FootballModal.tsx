@@ -111,7 +111,7 @@ const FootballModal = observer(() => {
                     </TableContainer>
                 </Fragment>
             }
-            <FootballChat/>
+            {/*<FootballChat/>*/}
             {dataWaiter && <LittleLoader loaderText={'Loading data...'}/>}
         </Basement>
     );

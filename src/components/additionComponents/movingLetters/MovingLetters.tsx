@@ -39,7 +39,7 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
     },[])
 
     useEffect(()=>{
-        console.log("language has been changed")
+        // console.log("language has been changed")
         setElemsData([])
         SeparateTextToWords(text)
     },[languages_data.activeLang.abr])
@@ -81,7 +81,7 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
     }
 
     function renderElems(data : Array<string[]>){
-        console.log("data", data)
+        // console.log("data", data)
         return data.map((word, wordIndex) => {
             const spannedWordInner = word.map((letter, letterIndex) => {
                 return <StyledLetter

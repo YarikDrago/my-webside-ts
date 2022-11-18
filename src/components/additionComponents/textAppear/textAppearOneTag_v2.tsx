@@ -59,10 +59,10 @@ const TextAppearOneTagV2 = ({children, key} : ITextAppear) => {
 
     useEffect(()=>{
         setInProp(true)
-        const elem = refElem.current as HTMLElement | null
-        if (elem !== null){
-            console.log("refElem", elem)
-        }
+        // const elem = refElem.current as HTMLElement | null
+        // if (elem !== null){
+        //     // console.log("refElem", elem)
+        // }
 
     },[])
 

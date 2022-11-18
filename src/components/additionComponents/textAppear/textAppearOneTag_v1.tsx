@@ -87,7 +87,7 @@ const TextAppearOneTagV1 = ({children, animeDuration, animeDelay}: IAppearText) 
 
                 }, animeDelay * 1000)
             } else {
-                console.log("blabla delay")
+                // console.log("blabla delay")
                 // currentElem.classList.remove("appear-1")
                 // currentElem.classList.add("oko")
                 setElemClass('animate')
@@ -98,7 +98,7 @@ const TextAppearOneTagV1 = ({children, animeDuration, animeDelay}: IAppearText) 
 
     useEffect(()=>{
         if (elemClass === "animate" && flag){
-            console.log("again")
+            // console.log("again")
             flag = false
             setTimeout(()=>{setElemClass("")},3000)
         }

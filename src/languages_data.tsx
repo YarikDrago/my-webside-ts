@@ -28,7 +28,7 @@ class Languages_data{
         flagPath: require('@/components/navbarHeader/images/flags/en-flag-icon.png').default
     }
 
-    SetNewActiveLang(newLang: string, newFlagPath: string){
+    SetNewActiveLang(newLang: string, newFlagPath: any){
         // console.log("set new active lang",  this.activeLang.abr, "=>", newLang )
         this.activeLang.abr = newLang
         this.activeLang.flagPath = newFlagPath

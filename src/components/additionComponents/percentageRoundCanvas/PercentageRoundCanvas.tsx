@@ -27,7 +27,7 @@ const PercentageRoundCanvas = ({percentage, animationDur}: ICanvas) => {
     const littleRoundRadius = side/20
 
     useEffect(()=>{
-        console.log("canvas start")
+        // console.log("canvas start")
         mainAnime()
     },[])
 

@@ -4,6 +4,7 @@ import languages_data from "../../../languages_data";
 import {toJS} from "mobx";
 import LangCell_v1 from "./LangCell";
 import {CSSTransition} from "react-transition-group";
+import checkLangLocalStorage from "./checkLangLocalStorage";
 
 const Basement = styled.ul`
   position: relative;
@@ -45,6 +46,7 @@ const ChoseLang_v1 = () => {
     }
 
     useEffect(()=>{
+        checkLangLocalStorage()
         languages_data.lang.forEach((elem: {abr: string, flagPath: string})=>{
             if (elem.abr !== languages_data.activeLang.abr){
                 setDropdownElems( prevState => [...prevState, toJS(elem)])
