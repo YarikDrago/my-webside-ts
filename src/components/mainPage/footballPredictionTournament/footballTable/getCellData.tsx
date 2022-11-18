@@ -1,12 +1,14 @@
-import football_data from "./football_data";
+import football_data from "../football_data";
 import {toJS} from "mobx";
-import {IFootballTableData} from "./FootballModal";
+import {IFootballTableData} from "../footballModal/FootballModal";
 import React, { Fragment } from "react";
 import NumberFormatOptions = Intl.NumberFormatOptions;
 import DateTimeFormatOptions = Intl.DateTimeFormatOptions;
 import DateTimeFormatPart = Intl.DateTimeFormatPart;
 import DateTimeFormat = Intl.DateTimeFormat;
 import FootballLittleFlag from "./FootballLittleFlag";
+import commandsLang_data from "./commandsLang_data";
+import languages_data from "../../../../languages_data";
 
 interface ICell{
     row: number,
@@ -42,14 +44,14 @@ function getCellData(row: number, col: number){
         if (cellData.command1){
             return formCommandCell(cellData.command1)
         } else {
-            return "unknown"
+            return commandsLang_data.country.unknown[languages_data.activeLang.abr as keyof object]
         }
     }
     if ("command2" in cellData){
         if (cellData.command2){
             return formCommandCell(cellData.command2)
         } else {
-            return "unknown"
+            return commandsLang_data.country.unknown[languages_data.activeLang.abr as keyof object]
         }
     }
 
@@ -113,13 +115,15 @@ function recountDate(date: string){
 }
 
 function formCommandCell(country: string | null){
-    // console.log("country", country)
+    // console.log("country", country?.replace(" ", "").toLowerCase())
     if (country === null){
         return "unknown"
+        // return commandsLang_data.country.unknown[languages_data.activeLang.abr as keyof object]
     }
     return <Fragment>
         <FootballLittleFlag country={country}/>
-        <p>{country}</p>
+        {/*<p>{country}</p>*/}
+        <p>{commandsLang_data.country[country?.replace(" ", "").toLowerCase() as keyof object][languages_data.activeLang.abr as keyof object]}</p>
     </Fragment>
 }
 

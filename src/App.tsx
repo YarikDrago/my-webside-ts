@@ -6,7 +6,7 @@ import MainPage_v1 from "./components/mainPage/MainPage";
 import contactMe_data from "./components/contactMe/ContactMe_data";
 import ContactMeModalV2 from "./components/contactMe/modal/ContactMeModalV2";
 import {Route, Routes} from "react-router";
-import FootballModal from "./components/mainPage/footballPredictionTournament/FootballModal";
+import FootballModal from "./components/mainPage/footballPredictionTournament/footballModal/FootballModal";
 import TestLinkPage from "./TestLinkPage";
 
 const App = observer(() => {

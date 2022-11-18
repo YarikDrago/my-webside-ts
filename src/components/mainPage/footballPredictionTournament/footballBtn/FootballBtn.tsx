@@ -1,14 +1,12 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import styled from 'styled-components'
 import axios from "axios";
-import LittleLoader from "../../Loaders/LittleLoader";
-import workWithData from "./workWithData";
-// import FootballModal from "./FootballModal";
+import LittleLoader from "../../../Loaders/LittleLoader";
 import {useNavigate} from "react-router-dom";
-import football_data from "./football_data";
+import football_data from "../football_data";
 import {observer} from "mobx-react";
-// import img from './images/football_filed.jpeg'
-// const img = require('./images/football_field.jpeg')
+import footballBtn_data from "./footballBtn_data";
+import languages_data from '../../../../languages_data';
 
 const StyledBtn = styled.div<{imgUrl: string}>`
   position: absolute;
@@ -53,13 +51,13 @@ const FootballBtn = observer(() => {
 
     useEffect(()=>{
         if (goToFootballPage){
-            console.log("go to football page")
+            // console.log("go to football page")
             navigate('/football')
         }
     },[goToFootballPage])
 
     async function getTableData(){
-        console.log("click")
+        // console.log("click")
         try{
             setDataWaiter(true)
             await axios.get(`http://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
@@ -78,10 +76,11 @@ const FootballBtn = observer(() => {
     return (
         <Fragment>
             <StyledBtn
-                imgUrl = {require('./images/football_field.jpeg').default}
+                imgUrl = {require('../images/football_field.jpeg').default}
                 onClick={()=>{getTableData()}}
             >
-                <h3>Football Prediction Tournament</h3>
+                {/*<h3>Football Prediction Tournament</h3>*/}
+                <h3>{footballBtn_data.text[languages_data.activeLang.abr as keyof object]}</h3>
             </StyledBtn>
             {dataWaiter && <LittleLoader loaderText={'Loading data...'}/>}
             {/*{data.length !== 0 && <FootballModal/>}*/}

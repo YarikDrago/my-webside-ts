@@ -1,9 +1,10 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import styled from 'styled-components'
-import football_data from "./football_data";
+import football_data from "../football_data";
 import getCellData from "./getCellData";
-import {IFootballTableData} from "./FootballModal";
+import {IFootballTableData} from "../footballModal/FootballModal";
 import {toJS} from "mobx";
+import {observer} from "mobx-react";
 
 const Table = styled.table`
   position: relative;
@@ -38,7 +39,7 @@ const Table = styled.table`
   }
 `
 
-const FootballTable = () => {
+const FootballTable = observer( () => {
     const amountRows = (football_data.footballData as IFootballTableData).tableData.amountRows
     const amountColumns = (football_data.footballData as IFootballTableData).tableData.amountColumns
     const [firstRow, setFirstRow] = useState(["#", "Date", "Status", "Command 1", "Command 2", "Round", "Result"])
@@ -48,7 +49,7 @@ const FootballTable = () => {
         //     console.log("load new data")
         //     console.log()
         // }
-        console.log(toJS(football_data.footballData))
+        // console.log(toJS(football_data.footballData))
         Object.keys((football_data.footballData as IFootballTableData).participants).forEach(part => {
             setFirstRow(prevState => [...prevState, part])
         })
@@ -90,6 +91,6 @@ const FootballTable = () => {
 
         </Table>
     );
-};
+})
 
 export default FootballTable;

@@ -1,12 +1,13 @@
 import React, {Fragment, useEffect, useState} from 'react';
 import styled from 'styled-components'
-import football_data from "./football_data";
+import football_data from "../football_data";
 import {observer} from "mobx-react";
-import CheckboxElem from "./CheckboxElem";
-import FootballTable from "./FootballTable";
-import LittleLoader from "../../Loaders/LittleLoader";
+import FootballTable from "../footballTable/FootballTable";
+import LittleLoader from "../../../Loaders/LittleLoader";
 import axios from "axios";
-import FootballChat from "./FootballChat";
+import footballModal_data from "./footballModal_data";
+import languages_data from "../../../../languages_data";
+import footballOptions_data from "./options/footballOptions_data";
 
 const Basement = styled.section<{imgUrl: string}>`
   position: fixed;
@@ -95,16 +96,17 @@ const FootballModal = observer(() => {
 
     return (
         <Basement
-            imgUrl = {require('./images/football_field.jpeg').default}
+            imgUrl = {require('../images/football_field.jpeg').default}
         >
-            <MainHeading>Football Prediction Table</MainHeading>
+            {/*<MainHeading>Football Prediction Table</MainHeading>*/}
+            <MainHeading>{footballModal_data.mainHeading[languages_data.activeLang.abr as keyof object]}</MainHeading>
             {Object.keys(football_data.footballData).length > 0 &&
                 <Fragment>
                     <Options>
-                        <p>Options</p>
-                        {Object.keys((football_data.footballData as IFootballTableData).participants).map((participant)=>
-                            <CheckboxElem text={participant}/>
-                        )}
+                        <p style={{margin: "0 auto"}}>{footballOptions_data.mainHeading[languages_data.activeLang.abr as keyof object]}</p>
+                        {/*{Object.keys((football_data.footballData as IFootballTableData).participants).map((participant)=>*/}
+                        {/*    <CheckboxElem text={participant}/>*/}
+                        {/*)}*/}
                     </Options>
                     <TableContainer>
                         <FootballTable/>

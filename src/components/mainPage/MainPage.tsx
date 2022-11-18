@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ShortAboutMe from "./ShortAboutMe/ShortAboutMe";
 import AboutMe from "./AboutMe/AboutMe";
 import Skills from "./Skills/Skills";
-import FootballBtn from "./footballPredictionTournament/FootballBtn";
+import FootballBtn from "./footballPredictionTournament/footballBtn/FootballBtn";
 
 const Basement = styled.main`
   position: relative;
