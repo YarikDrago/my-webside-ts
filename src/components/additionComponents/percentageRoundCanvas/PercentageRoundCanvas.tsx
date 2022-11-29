@@ -29,6 +29,7 @@ const PercentageRoundCanvas = ({percentage, animationDur}: ICanvas) => {
     useEffect(()=>{
         // console.log("canvas start")
         mainAnime()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
 
@@ -75,7 +76,6 @@ const PercentageRoundCanvas = ({percentage, animationDur}: ICanvas) => {
                 if (ctx === null){
                     return
                 }
-                const perExecution = (Date.now() - startTime) / animeDuration
                 const xCenterPos = side/2 + (side/2 - littleRoundRadius) * Math.cos(-Math.PI/2 + Math.PI*2*percentage)
                 const yCenterPos = side/2 + (side/2 - littleRoundRadius) * Math.sin(-Math.PI/2 + Math.PI*2*percentage)
                 ctx.beginPath()

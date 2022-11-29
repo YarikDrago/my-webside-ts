@@ -89,6 +89,7 @@ const TextAppearSplit = ({children, singleAppear}: ITextAppearSplit) => {
         if (textElem !== null){
             appearIntersectionScroll.observe(textElem)
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     const ChildTag = children.type

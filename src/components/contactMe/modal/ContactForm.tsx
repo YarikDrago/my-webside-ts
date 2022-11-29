@@ -196,9 +196,9 @@ const ContactForm = () => {
             />
             <SendBtn
                 type={"submit"}
-                onClick={(e)=>{
-                    // e.preventDefault()
-                }}
+                // onClick={(e)=>{
+                //     // e.preventDefault()
+                // }}
             >SEND</SendBtn>
             <TestTransitionText>
                 <p>* required fields</p>

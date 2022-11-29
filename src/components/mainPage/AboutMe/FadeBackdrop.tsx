@@ -1,4 +1,4 @@
-import React, {RefObject, useEffect, useState} from 'react';
+import React, {RefObject, useState} from 'react';
 import styled from 'styled-components'
 
 const Backdrop = styled.div<{opacity: number}>`
@@ -27,13 +27,16 @@ interface IFadeBackdrop{
 const FadeBackdrop = ({start, finish, refElem} : IFadeBackdrop) => {
     const [backdropOpacity, setBackdropOpacity] = useState(0)
 
-    useEffect(()=>{
-        // console.log("ref elem", refElem?.current)
-        window.addEventListener("scroll",recountOpacity)
-        return ()=>{
-            window.removeEventListener("scroll", recountOpacity)
-        }
-    },[])
+    // useEffect(()=>{
+    //     // console.log("ref elem", refElem?.current)
+    //
+    //     // return ()=>{
+    //     //     window.removeEventListener("scroll", recountOpacity)
+    //     // }
+    //
+    // },[])
+
+    window.addEventListener("scroll",recountOpacity)
 
     function recountOpacity(){
         if (refElem?.current !== null && refElem?.current !== undefined) {
@@ -49,6 +52,7 @@ const FadeBackdrop = ({start, finish, refElem} : IFadeBackdrop) => {
             }
         }
     }
+
 
     return (
         <Backdrop opacity={backdropOpacity}/>

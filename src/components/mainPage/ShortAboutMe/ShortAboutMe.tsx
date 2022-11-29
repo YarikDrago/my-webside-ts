@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import styled from 'styled-components'
 import languages_data from '../../../languages_data';
 import ShortAboutMe_data from './ShortAboutMe_data';

@@ -24,6 +24,7 @@ interface IMessage{
 }
 
 const MessageSendLine = ({status}: IMessage) => {
+
     useEffect(()=>{
         // console.log("message status", status)
         if (contactMe_data.messageSendStatus !== 0){
@@ -31,7 +32,8 @@ const MessageSendLine = ({status}: IMessage) => {
                 contactMeData.changeMessageStatus(0)
             },5000)
         }
-    },[contactMeData.messageSendStatus])
+    // },[contactMeData.messageSendStatus])
+    },[])
 
     return (
         <StatusLine status={status}>

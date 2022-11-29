@@ -1,6 +1,5 @@
 import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components'
-import {CSSTransition} from "react-transition-group";
 import Skills_data from "./Skills_data";
 import {observer} from "mobx-react";
 import SkillAnimationLines_data from "./SkillAnimationLines_data";

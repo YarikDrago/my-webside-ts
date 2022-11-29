@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import styled from 'styled-components'
 import SkillCell from "./SkillCell";
 import Skills_data from "./Skills_data";
@@ -30,18 +30,23 @@ interface IElems{
 
 const SkillsSidebar_v2 = () => {
     const [cellElems, setCellElems] = useState<Array<IElems>>([])
+    const refSkillsSideBar = useRef(null)
+    const [prevWindowWidth, setPrevWindowWidth] = useState(window.innerWidth)
 
     useEffect(()=>{
-        console.log("cell elems", Skills_data.skillsInfo.length)
+        // console.log("cell elems", Skills_data.skillsInfo.length)
         // Skills_data.skillsInfo.forEach((elem: IElems)=>{
         Skills_data.skillsInfo.forEach((elem: {path: string, title: string, percentValue: number})=>{
             setCellElems(prevState => [...prevState, toJS(elem)])
         })
     },[])
+
     return (
-        <StyledSkillsSideBar>
+        <StyledSkillsSideBar
+            ref = {refSkillsSideBar}
+        >
             {cellElems.map((elem, index: number)=>{
-                console.log("elem", elem.percentValue)
+                // console.log("elem", elem.percentValue)
                 return <SkillCell
                     key = {Date.now() + index}
                     percentValue = {elem.percentValue}

@@ -23,25 +23,26 @@ interface IMovingLetters{
     style?: React.CSSProperties
     specColor?: string
 }
-const MovingLetters = observer(({children, specColor, style}: IMovingLetters) => {
+const MovingLetters = observer(({children}: IMovingLetters) => {
     const LetterTag = (children as ReactElement).type
     const elemStyle = (children as ReactElement).props.style
     const text = (children as ReactElement).props.children
     const [elemsData, setElemsData] = useState<Array<string[]>>([])
     //change to false after all
-    const [inActive, setInActive] =  useState(true)
+    // activate after adding of appearing condition
+    // const [inActive, setInActive] =  useState(true)
+    const inActive = true
 
     useEffect(()=>{
-        if (children !== null){
-            // console.log("style", (children as ReactElement).props.style)
-        }
         SeparateTextToWords(text)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[])
 
     useEffect(()=>{
         // console.log("language has been changed")
         setElemsData([])
         SeparateTextToWords(text)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     },[languages_data.activeLang.abr])
 
     useEffect(()=>{
@@ -51,9 +52,8 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
     function SeparateTextToWords(t: string){
         const words = t.split(" ")
         // console.log("words", words)
-        words.forEach((elem, index)=>{
+        words.forEach((elem)=>{
             setElemsData(prevState => [...prevState, SeparateWordToLetters(elem)])
-            // setElemsData(prevState => [...prevState, index])
         })
     }
 
@@ -73,7 +73,7 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
             } else {
                 if (letter !== null){
                     letter.style.transform = `scale( ${1+ 0.5  * (1 - (Date.now() - startAnime)/1000) *
-                    (Math.sin((Date.now()- startAnime)/200* 1 *  Math.PI - Math.PI/2)+1)},1)`
+                    (Math.sin((Date.now()- startAnime) / 200 * 1 *  Math.PI - Math.PI/2)+1)},1)`
                 }
                 requestAnimationFrame(Anime)
             }
@@ -89,6 +89,7 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
                     key = {Date.now() + 1000 + letterIndex}
                         onMouseOver={(e: React.MouseEvent)=>{
                         // console.log("mouse over", status, inActive)
+                        // addition condition to activate wobbling of text after appear
                         if (inActive){
                             (e.target as HTMLElement).style.color = "red"
                             letterHover(e.target as HTMLElement)
@@ -107,8 +108,6 @@ const MovingLetters = observer(({children, specColor, style}: IMovingLetters) =>
             } else {
                 return [spannedWord]
             }
-            // console.log("spanned word", spannedWord)
-            // return spannedWord
         })
     }
 

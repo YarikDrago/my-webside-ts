@@ -7,9 +7,6 @@ import contactMe_data from "./components/contactMe/ContactMe_data";
 import ContactMeModalV2 from "./components/contactMe/modal/ContactMeModalV2";
 import {Route, Routes} from "react-router";
 import FootballModal from "./components/mainPage/footballPredictionTournament/footballModal/FootballModal";
-import TestLinkPage from "./TestLinkPage";
-import FootballModalV2
-    from "./components/mainPage/footballPredictionTournament/footballModal/footballModal_v2/FootballModal_v2";
 import TestPage from "./components/testPage/TestPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import TestLinksPage from "./components/TestLinksPage/TestLinksPage";

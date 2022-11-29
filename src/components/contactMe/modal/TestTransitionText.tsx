@@ -32,7 +32,7 @@ const TestTransitionText = ({children} : IText) => {
     const [maskLeft, setMaskLeft] = useState(0)
     const [maskWidth, setMaskWidth] = useState(0)
     const [maskHeight, setMaskHeight] = useState(0)
-    const [elemStyle, setElemStyle] = useState({})
+    // const [elemStyle, setElemStyle] = useState({})
     // if (children !== null){
     //     setElemStyle(children.props.style)
     // }
@@ -46,8 +46,8 @@ const TestTransitionText = ({children} : IText) => {
         if (mainElem !== null){
             // setElemStyle(mainElem.style)
             setFontColor(`${getComputedStyle(mainElem).color}`)
-            console.log("main elem", mainElem.offsetTop, mainElem.offsetLeft, mainElem.offsetWidth, mainElem.offsetHeight)
-            console.log("font height", children)
+            // console.log("main elem", mainElem.offsetTop, mainElem.offsetLeft, mainElem.offsetWidth, mainElem.offsetHeight)
+            // console.log("font height", children)
             setMaskTop(mainElem.offsetTop)
             setMaskLeft(mainElem.offsetLeft)
             setMaskWidth(mainElem.offsetWidth)
@@ -102,7 +102,7 @@ const TestTransitionText = ({children} : IText) => {
     return (
         <Fragment>
             <MainTag
-                style={elemStyle}
+                //style={elemStyle}
                 className={mainTagClass}
                 ref = {refMainTag}
             >

@@ -60,9 +60,27 @@ const SkillCell = ({percentValue, imgPath, key, index}: ISkillCell) => {
         return 0
     }
 
+    function removeHoverClassForArray(elemArr: HTMLCollectionOf<Element>){
+        Array.from(elemArr).forEach(elem => {
+            elem.classList.remove('hovered')
+        })
+    }
+
     return (
         <Cell
             key={key}
+            onClick = {(e : React.MouseEvent)=>{
+                console.log("cell clicked")
+                const parentElem  = e.currentTarget.parentElement as HTMLElement
+                removeHoverClassForArray(parentElem.getElementsByClassName('hovered'))
+                if (index !== undefined){
+                    Skills_data.changeActiveIndex(index)
+                    Skills_data.setLine1Height(determineCenterYOfCell(e.target as HTMLElement))
+                    Skills_data.setLine1Width(determineCenterXOfCell(e.target as HTMLElement))
+                }
+                (e.target as HTMLElement).getElementsByTagName('img')[0].classList.add('hovered')
+
+            }}
             onMouseEnter={(e : React.MouseEvent)=>{
                 if (index !== undefined){
                     Skills_data.changeActiveIndex(index)

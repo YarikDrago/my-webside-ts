@@ -1,6 +1,5 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment} from 'react';
 import styled from 'styled-components'
-import TextAppear_v1 from "../../additionComponents/textAppear/TextAppear_v1";
 import TestTransitionText from "./TestTransitionText";
 
 const StyledLine = styled.input`
@@ -56,9 +55,11 @@ interface IContactLine {
 
 const InputLine_v1 = ({title, name, type, autoComplete, placeholder}: IContactLine) => {
     const newType = type || "text"
-    useEffect(()=>{
-        console.log("type", type)
-    },[])
+
+    // useEffect(()=>{
+    //     console.log("type", type)
+    // },[])
+
     return (
         <Fragment>
             <TestTransitionText>

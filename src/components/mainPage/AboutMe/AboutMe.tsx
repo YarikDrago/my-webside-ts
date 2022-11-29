@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useRef} from 'react';
+import React, {Fragment, useRef} from 'react';
 import styled from 'styled-components'
 import FadeBackdrop from "./FadeBackdrop";
 import AboutMeInfoBlock from "./AboutMeInfoBlock";
@@ -48,10 +48,10 @@ const MainTitle = styled.h1`
 
 const AboutMe = observer(() => {
     const refBasement = useRef(null)
-    let tempElem
-    useEffect(()=>{
-        tempElem = refBasement.current
-    },[])
+    // let tempElem
+    // useEffect(()=>{
+    //     tempElem = refBasement.current
+    // },[])
 
     return (
         <Fragment>

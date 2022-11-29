@@ -14,18 +14,6 @@ const Basement = styled.section`
 `
 const TestLinksPage = () => {
 
-    async function getSimpleDataFromServer(){
-        // console.log("click")
-        try{
-            await axios.get(`https://uliantcev.ru/test`).then(res => {
-                console.log("data",res.data)
-            })
-        }catch(e)
-        {
-            console.log("get table error:", e)
-        }
-    }
-
     async function getJSONPlaceholderData(){
         // console.log("click")
         try{

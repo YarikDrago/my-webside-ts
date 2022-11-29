@@ -60,33 +60,36 @@ const Line2 = styled.svg`
 const SkillAnimatedLines = observer(() => {
     const [inProp, setInProp]= useState(false)
     const refBasement = useRef(null)
-    const [line1Height, setLine1Height] = useState(Skills_data.line1Height)
-    const [line2Height, setLine2Height] = useState(Skills_data.line1Height)
+    // const [line1Height, setLine1Height] = useState(Skills_data.line1Height)
+    // const [line2Height, setLine2Height] = useState(Skills_data.line1Height)
 
 
 
     useEffect(()=>{
         setInProp(true)
-        console.log("skills amount", Skills_data.skillsInfo.length)
-        if (refBasement.current){
-            // console.log((refBasement.current as HTMLElement).offsetHeight)
-            // console.log((refBasement.current as HTMLElement).offsetWidth)
-            //determine real height of line 2
-        }
+        // console.log("skills amount", Skills_data.skillsInfo.length)
+        // if (refBasement.current){
+        //     // console.log((refBasement.current as HTMLElement).offsetHeight)
+        //     // console.log((refBasement.current as HTMLElement).offsetWidth)
+        //     //determine real height of line 2
+        // }
     },[])
 
-    useEffect(()=>{
-        // console.log("new active index", Skills_data.activeIndex)
-        // setCenterYcoord(Skills_data.centerYActiveElem)
-        setLine1Height(Skills_data.line1Height)
-    },[Skills_data.activeIndex])
+
+
+    // useEffect(()=>{
+    //     // console.log("new active index", Skills_data.activeIndex)
+    //     // setCenterYcoord(Skills_data.centerYActiveElem)
+    //     setLine1Height(Skills_data.line1Height)
+    // },[Skills_data.activeIndex])
 
 
 
     return (
         <Basement
             ref = {refBasement}
-            line1Height={line1Height}
+            // line1Height={line1Height}
+            line1Height={Skills_data.line1Height}
 
         >
             <CSSTransition
