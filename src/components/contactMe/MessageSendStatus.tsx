@@ -15,7 +15,7 @@ const StatusLine = styled.div<{ status: number }>`
   padding: 10px;
   border-radius: 10px;
   //background-color: #5caf00;
-  background-color: ${props => props.status === 200 ? "#5caf00" : "#e00639"};
+  background-color: ${props => props.status === 250 ? "#5caf00" : "#e00639"};
   
 `
 interface IMessage{
@@ -25,7 +25,7 @@ interface IMessage{
 
 const MessageSendLine = ({status}: IMessage) => {
     useEffect(()=>{
-        // console.log("message status")
+        // console.log("message status", status)
         if (contactMe_data.messageSendStatus !== 0){
             setTimeout(()=>{
                 contactMeData.changeMessageStatus(0)
@@ -35,7 +35,7 @@ const MessageSendLine = ({status}: IMessage) => {
 
     return (
         <StatusLine status={status}>
-            {status === 200 ?
+            {status === 250 ?
                 <h1>Message was sent</h1> :
                 <Fragment>
                     <h1>Message was not sent</h1>

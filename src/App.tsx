@@ -8,18 +8,23 @@ import ContactMeModalV2 from "./components/contactMe/modal/ContactMeModalV2";
 import {Route, Routes} from "react-router";
 import FootballModal from "./components/mainPage/footballPredictionTournament/footballModal/FootballModal";
 import TestLinkPage from "./TestLinkPage";
+import FootballModalV2
+    from "./components/mainPage/footballPredictionTournament/footballModal/footballModal_v2/FootballModal_v2";
+import TestPage from "./components/testPage/TestPage";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
+import TestLinksPage from "./components/TestLinksPage/TestLinksPage";
 
 const App = observer(() => {
     return (
         <Fragment>
             <Routes>
                 <Route path={'/'} element={<MainPage_v1/>}/>
+                <Route path={'/test_pages'} element={<TestLinksPage/>}/>
                 <Route path={'/football'} element={<FootballModal/>}/>
-                <Route path={'/test'} element={<TestLinkPage/>}/>
-                <Route path={'/*'} element={<MainPage_v1/>}/>
+                <Route path={'/test_page'} element={<TestPage/>}/>
+                <Route path={'/*'} element={<ErrorPage/>}/>
 
             </Routes>
-            {/*<MainPage_v1/>*/}
             <NavbarHeader_v1/>
             <ContactMeModalV2 status={contactMe_data.modalVisibility}/>
         </Fragment>

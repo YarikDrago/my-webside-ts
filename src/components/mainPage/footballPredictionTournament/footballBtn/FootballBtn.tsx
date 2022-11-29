@@ -53,17 +53,21 @@ const FootballBtn = observer(() => {
         if (goToFootballPage){
             // console.log("go to football page")
             navigate('/football')
+
         }
     },[goToFootballPage])
+
 
     async function getTableData(){
         // console.log("click")
         try{
             setDataWaiter(true)
-            await axios.get(`http://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
-            // await axios.get(`http://${process.env.SERVER_IP}:6001/football_data`).then(res => {
-                setDataWaiter(false)
+            // await axios.get(`https://uliantcev.ru/football_data`).then(res => {
+            await axios.get(`${process.env.TP}://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
+                console.log("data",res.data)
                 // setData(res.data)
+
+                setDataWaiter(false)
                 football_data.setNewFootballData(res.data)
                 setGoToFootballPage(true)
             })
@@ -73,10 +77,11 @@ const FootballBtn = observer(() => {
             setDataWaiter(false)
         }
     }
+
     return (
         <Fragment>
             <StyledBtn
-                imgUrl = {require('../images/football_field.jpeg').default}
+                imgUrl = {require('../images/football_field_medium.jpg').default}
                 onClick={()=>{getTableData()}}
             >
                 {/*<h3>Football Prediction Tournament</h3>*/}

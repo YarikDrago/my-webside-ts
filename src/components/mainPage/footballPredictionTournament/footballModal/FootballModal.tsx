@@ -92,7 +92,8 @@ const FootballModal = observer(() => {
     async function getTableData(){
         try{
             setDataWaiter(true)
-            await axios.get(`http://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
+            // await axios.get(`https://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
+            await axios.get(`${process.env.TP}://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/football_data`).then(res => {
                 setDataWaiter(false)
                 // setData(res.data)
                 football_data.setNewFootballData(res.data)

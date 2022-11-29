@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import styled from 'styled-components'
 import languages_data from '../../../languages_data';
 import ShortAboutMe_data from './ShortAboutMe_data';
@@ -83,6 +83,7 @@ const ShortAboutMe = observer(() => {
                     <h1>{ShortAboutMe_data.text.slogan[languages_data.activeLang.abr as keyof object]}</h1>
                 </MovingLetters>
             </TextAppearBlock>
+
         </StyledShortAboutMe>
     );
 })

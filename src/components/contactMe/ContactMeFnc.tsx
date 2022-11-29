@@ -47,12 +47,9 @@ export function checkForm(e: React.FormEvent<HTMLFormElement>){
 
 async function sendMessage(name: string, surname: string, email: string, telephone: string, message: string) {
     console.log('trying to send message')
-    //await axios.post('http://localhost:6600/send_email', {
     contactMe_data.changeMessageStatus(0)
     contactMe_data.setLoaderVisibility(true)
-    // await axios.post('http://158.160.37.52:6600/send_email', {
-    await axios.post(`http://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/send_email`, {
-        //await axios.post(process.env.SERVER_URL, {
+    await axios.post(`${process.env.TP}://${process.env.SERVER_IP}:${process.env.MAIN_PORT}/send_email`, {
         "name": name,
         "surname": surname,
         "email": email,
@@ -60,14 +57,13 @@ async function sendMessage(name: string, surname: string, email: string, telepho
         "message": message
         //}).then(res => console.log('message was really sent in: ', res.status))
     }).then(res => {
-        const emailDeliveryStatus = res.status
-        console.log(res.status)
-        if (emailDeliveryStatus === 200) {
-            // console.log('all right with message: ', "none")
+        const emailDeliveryStatus = Number(res.status)
+        if (emailDeliveryStatus == 250) {
+            console.log("Good smtp status", res.status)
             contactMeData.setModalVisibility(false)
             contactMe_data.changeMessageStatus(emailDeliveryStatus)
         } else {
-            console.log("status:", res.status)
+            console.log("Bad smtp status:", res.status)
             contactMe_data.changeMessageStatus(emailDeliveryStatus)
         }
         contactMe_data.setLoaderVisibility(false)

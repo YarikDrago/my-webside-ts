@@ -4,13 +4,13 @@ class contactMeData{
     constructor() {
         makeAutoObservable(this)
     }
-    modalVisibility= false
+    modalVisibility = false
     setModalVisibility(newModalStatus : boolean){
         this.modalVisibility = newModalStatus
         console.log("changed", newModalStatus)
     }
 
-    messageSendStatus= 0
+    messageSendStatus = 0
     changeMessageStatus(newStatus: number){
         this.messageSendStatus = newStatus
     }
