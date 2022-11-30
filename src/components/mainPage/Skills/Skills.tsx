@@ -28,6 +28,7 @@ const Backdrop = styled.section`
     "aside"
     "main"
   ;
+  padding: 20px;
   }
 `
 const MainTitleContainer = styled.div`

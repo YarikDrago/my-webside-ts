@@ -19,11 +19,12 @@ const Canvas = styled.canvas`
 interface ICanvas{
     percentage: number
     animationDur?: number
+    diameter?: number
 }
 
-const PercentageRoundCanvas = ({percentage, animationDur}: ICanvas) => {
+const PercentageRoundCanvas = ({percentage, animationDur, diameter}: ICanvas) => {
     const refCanvas = useRef(null)
-    const side = 100
+    const side = diameter || 100
     const littleRoundRadius = side/20
 
     useEffect(()=>{

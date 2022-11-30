@@ -3,8 +3,9 @@ import styled from 'styled-components'
 import PercentageRoundCanvas from "../../additionComponents/percentageRoundCanvas/PercentageRoundCanvas";
 import Skills_data from "./Skills_data";
 
-const Cell = styled.div`
-  --side: 100px;
+const Cell = styled.div<{skillCellSide? : number}>`
+  //--side: 100px;
+  --side: ${props => props.skillCellSide ? props.skillCellSide : 100}px;
   position: relative;
   display: block;
   box-sizing: border-box;
@@ -33,10 +34,11 @@ const SkillImg = styled.img<{scale?: number}>`
 interface ISkillCell{
     percentValue: number
     imgPath: string
+    skillCellSide?: number
     key? : number | string
     index?: number
 }
-const SkillCell = ({percentValue, imgPath, key, index}: ISkillCell) => {
+const SkillCell = ({percentValue, imgPath, skillCellSide, key, index}: ISkillCell) => {
 
     function determineCenterYOfCell(cellElem: HTMLElement){
         // console.log(cellElem.offsetTop)
@@ -68,6 +70,7 @@ const SkillCell = ({percentValue, imgPath, key, index}: ISkillCell) => {
 
     return (
         <Cell
+            skillCellSide = {skillCellSide}
             key={key}
             onClick = {(e : React.MouseEvent)=>{
                 console.log("cell clicked")
@@ -94,7 +97,7 @@ const SkillCell = ({percentValue, imgPath, key, index}: ISkillCell) => {
             }}
             // onMouseOver={()=>{console.log("mouse over")}}
         >
-            <PercentageRoundCanvas percentage={percentValue}/>
+            <PercentageRoundCanvas percentage={percentValue} diameter={skillCellSide}/>
             <SkillImg
                 // onMouseEnter={()=>{console.log("mouse on img")}}
                 src={require('./'+ imgPath).default}/>
