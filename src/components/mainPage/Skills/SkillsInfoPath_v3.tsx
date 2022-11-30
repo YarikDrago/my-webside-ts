@@ -14,8 +14,8 @@ const InfoPath = styled.div`
   grid-column-gap: 10px;
   box-sizing: border-box;
   width: 100%;
-  //height: 100%;
-  height: 350px;
+  height: 100%;
+  //height: 350px;
   //min-height: 350px;
   padding-right: 30px;
   overflow-y: auto;
@@ -27,7 +27,8 @@ const InfoPath = styled.div`
   @media screen and (max-width: 800px){
     grid-template-columns: none;
     grid-template-rows: 1fr;
-    padding-right: 0;
+    padding: 5px;
+    //padding-right: 0;
     height: auto;
   }
 `

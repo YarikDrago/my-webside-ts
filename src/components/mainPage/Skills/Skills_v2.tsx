@@ -13,12 +13,18 @@ const Backdrop = styled.section`
   flex-direction: column;
   box-sizing: border-box;
   width: 100vw;
+  height: 100vh;
+  max-height: 700px;
   background: white;
   padding: 50px 20px 50px 50px ;
   
   @media screen and (max-width: 800px){
-    padding: 50px 20px 50px 10px ;
+    padding: 50px 20px 20px 10px ;
   }
+  @media screen and (max-height: 500px){
+    padding: 10px 10px 10px 10px ;
+  }
+  
 `
 const MainTitleContainer = styled.div`
   grid-area: title;
@@ -48,8 +54,14 @@ const MainBlock = styled.div`
   position: relative;
   display: flex;
   flex-direction: row;
+  overflow-y: scroll;
+  padding: 0 0 0 10px;
+  height: 100%;
   @media screen and (max-width: 800px){
     flex-direction: column;
+  }
+  @media screen and (max-height: 500px){
+    padding: 10px;
   }
 `
 
@@ -60,10 +72,17 @@ const LinesBlock = styled.div`
   height: 100%;
   width: 100px;
   margin: 0 10px;
+  @media screen and (max-height: 500px){
+    width: 50px;
+  }
   @media screen and (max-width: 800px){
   margin: 10px 0;
   height: 50px;
   width: 100%;
+  @media screen and (max-height: 500px){
+    width: 100%;
+    display: none;
+  }
  }
  
 `

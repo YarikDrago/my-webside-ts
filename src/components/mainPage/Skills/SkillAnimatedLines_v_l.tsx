@@ -11,7 +11,7 @@ const Basement = styled.div<{line1Height: number}>`
   //display: flex;
   display: grid;
   grid-template-rows: ${props => props.line1Height}px auto;
-  height: 350px;  
+  height: 100%;  
   width: 100%;
   max-height: 100%;
   //background-color: darkcyan;

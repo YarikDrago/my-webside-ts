@@ -14,11 +14,11 @@ class SkillAnimationLines_data{
 
     alterMode = false
     setAlterModeTrue(){
-        console.log("enter")
+        // console.log("enter")
         this.alterMode = true
     }
     setAlterModeFalse(){
-        console.log("leave")
+        // console.log("leave")
         this.alterMode = false
     }
 }

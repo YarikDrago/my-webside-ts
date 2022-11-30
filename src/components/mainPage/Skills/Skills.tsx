@@ -17,6 +17,7 @@ const Backdrop = styled.section`
     "aside main"
   ;
   width: 100vw;
+  //height: 350px;
   background: white;
   padding: 50px 20px 50px 50px ;
   
@@ -65,7 +66,6 @@ const Skills = () => {
             </MainTitleContainer>
             <SkillsSidebar_v2/>
             <SkillsInfoPath_v2/>
-
         </Backdrop>
     );
 };

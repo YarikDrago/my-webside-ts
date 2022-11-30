@@ -86,7 +86,7 @@ const SkillAnimatedLines_h_up = observer(() => {
     const refLine2 = useRef(null)
 
     const mainAnimate = () =>{
-        console.log('main Anime start 2')
+        console.log('skills vertical lines anime')
         const startTime = Date.now()
         const animeDuration = 1000
         // let horizontalWidth = 0
@@ -105,7 +105,7 @@ const SkillAnimatedLines_h_up = observer(() => {
             section2Time = animeDuration * horizontalTime
             section3Time = section1Time + section2Time
         }
-        console.log("time zones", section1Time, section2Time, section3Time, animeDuration)
+        // console.log("time zones", section1Time, section2Time, section3Time, animeDuration)
 
         requestAnimationFrame(anime)
 
@@ -220,7 +220,7 @@ const SkillAnimatedLines_h_up = observer(() => {
     }
 
     useEffect(()=>{
-        console.log("skills amount", Skills_data.skillsInfo.length)
+        // console.log("skills amount", Skills_data.skillsInfo.length)
         mainAnimate()
     },[])
 
@@ -228,6 +228,13 @@ const SkillAnimatedLines_h_up = observer(() => {
         setLine1Height(Skills_data.line1Width)
         mainAnimate()
     },[Skills_data.activeIndex])
+
+    // redraw line and reset line center position if center of active cell is changing
+    useEffect(()=>{
+        console.log("redraw line")
+        setLine1Height(Skills_data.line1Width)
+        mainAnimate()
+    },[Skills_data.line1Width, Skills_data.line1Height])
 
     return (
         <Basement

@@ -45,7 +45,7 @@ class Skills_data{
     }
 
     // change and determine when cells appear
-    line1Height = 50
+    line1Height = 50 // dimension of center of active percentage cell
     line1Width  = 50
     setLine1Height(newY: number){
         console.log("new Y", newY)

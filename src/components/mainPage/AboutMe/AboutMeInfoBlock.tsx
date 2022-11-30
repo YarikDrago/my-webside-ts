@@ -10,7 +10,8 @@ const InfoBlock = styled.div`
   
   p{
       font-size: 25px;
-      font-family: 'Russo One', sans-serif;
+      //font-family: 'Russo One', sans-serif;
+      font-family: 'Comfortaa', cursive;
   }
    
   .aboutme{    

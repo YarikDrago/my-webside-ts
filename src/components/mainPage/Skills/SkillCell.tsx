@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components'
 import PercentageRoundCanvas from "../../additionComponents/percentageRoundCanvas/PercentageRoundCanvas";
 import Skills_data from "./Skills_data";
@@ -39,6 +39,19 @@ interface ISkillCell{
     index?: number
 }
 const SkillCell = ({percentValue, imgPath, skillCellSide, key, index}: ISkillCell) => {
+    const refSkillCell = useRef(null)
+
+    // skill cell with index "0" is preselected
+    useEffect(()=>{
+        if (refSkillCell.current === null) return
+        const cellElem = refSkillCell.current as HTMLElement
+        if (index === Skills_data.activeIndex){
+            // console.log("skill cell position")
+            Skills_data.setLine1Height(determineCenterYOfCell(cellElem))
+            Skills_data.setLine1Width(determineCenterXOfCell(cellElem))
+        }
+    },[])
+
 
     function determineCenterYOfCell(cellElem: HTMLElement){
         // console.log(cellElem.offsetTop)
@@ -62,6 +75,7 @@ const SkillCell = ({percentValue, imgPath, skillCellSide, key, index}: ISkillCel
         return 0
     }
 
+
     function removeHoverClassForArray(elemArr: HTMLCollectionOf<Element>){
         Array.from(elemArr).forEach(elem => {
             elem.classList.remove('hovered')
@@ -70,6 +84,7 @@ const SkillCell = ({percentValue, imgPath, skillCellSide, key, index}: ISkillCel
 
     return (
         <Cell
+            ref = {refSkillCell}
             skillCellSide = {skillCellSide}
             key={key}
             onClick = {(e : React.MouseEvent)=>{
