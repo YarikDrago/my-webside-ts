@@ -62,8 +62,8 @@ const SkillsInfoPath_v3 = observer(() => {
 
 
     function setAnimatedLinesType(){
-        console.log("change lines file", )
-        console.log(window.innerWidth)
+        // console.log("change lines file", )
+        // console.log(window.innerWidth)
         if (window.innerWidth <= 800){
             setLinesMode(true)
         } else {

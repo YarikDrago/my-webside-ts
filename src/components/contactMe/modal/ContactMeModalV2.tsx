@@ -54,13 +54,13 @@ interface IContactMe{
 }
 const ContactMeModalV2 = observer(({status}: IContactMe) => {
 
-    useEffect(()=>{
-        window.addEventListener("resize", resizeWindow)
-    },[])
-
-    function resizeWindow(){
-        console.log(window.innerWidth, window.innerHeight)
-    }
+    // useEffect(()=>{
+    //     window.addEventListener("resize", resizeWindow)
+    // },[])
+    //
+    // function resizeWindow(){
+    //     // console.log(window.innerWidth, window.innerHeight)
+    // }
     return (
         <Fragment>
             <CSSTransition

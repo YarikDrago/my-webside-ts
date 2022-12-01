@@ -1,3 +1,5 @@
+import {useState} from "react";
+
 interface IElectron{
     angle: number,
     dirX: number,
@@ -19,10 +21,22 @@ function mainAnime(elem : HTMLCanvasElement){
     // length of hexagon edge
     const edgeLength = 50
     const maxElectrons = 10
+    // const [animeEnder, setAnimeEnder] = useState(false)
     let lastTime = Date.now()
+
     requestAnimationFrame(anime)
 
+    function rebootAnimation(){
+        electrons = []
+    }
+
+
     function anime(){
+
+        window.addEventListener("resize", rebootAnimation)
+
+
+
         const electronsForDelete: Array<number> = []
         if (context === null){
             return
@@ -39,6 +53,9 @@ function mainAnime(elem : HTMLCanvasElement){
 
 
         requestAnimationFrame(anime)
+        // if (!animeEnder){
+        //     requestAnimationFrame(anime)
+        // }
     }
 }
 

@@ -55,13 +55,13 @@ const MainBlock = styled.div`
   display: flex;
   flex-direction: row;
   overflow-y: scroll;
-  padding: 0 0 0 10px;
+  //padding: 0 0 0 10px;
   height: 100%;
   @media screen and (max-width: 800px){
     flex-direction: column;
   }
   @media screen and (max-height: 500px){
-    padding: 10px;
+    //padding: 10px;
   }
 `
 
@@ -97,7 +97,7 @@ const SkillsV2 = () => {
     window.addEventListener("resize", checkLineMode)
 
     function checkLineMode(){
-        console.log("resize percentage")
+        // console.log("resize percentage")
         if (window.innerWidth <= 800){
             setLineMode(false)
         } else {
