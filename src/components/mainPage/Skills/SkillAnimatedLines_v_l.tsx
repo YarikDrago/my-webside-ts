@@ -79,11 +79,14 @@ const SkillAnimatedLines_v_l = observer(() => {
     const lineWidth = 10
     const refBasement = useRef(null)
     const [line1Height, setLine1Height] = useState(Skills_data.line1Height)
+    // const refLine1Height = useRef(Skills_data.line1Height)
     const refLine1 = useRef(null)
     const refLine2 = useRef(null)
 
     const mainAnimate = () =>{
-        console.log('main Anime start 2')
+        console.log('main Anime start vertical line')
+        console.log(line1Height)
+
         const startTime = Date.now()
         const animeDuration = 1000
         let horizontalWidth = 0
@@ -222,7 +225,8 @@ const SkillAnimatedLines_v_l = observer(() => {
     }
 
     useEffect(()=>{
-        console.log("skills amount", Skills_data.skillsInfo.length)
+        // console.log("skills amount", Skills_data.skillsInfo.length)
+        console.log("start animation of vertical line")
         mainAnimate()
     },[])
 
@@ -230,6 +234,12 @@ const SkillAnimatedLines_v_l = observer(() => {
         setLine1Height(Skills_data.line1Height)
         mainAnimate()
     },[Skills_data.activeIndex])
+
+    useEffect(()=>{
+        console.log("redraw vertical line", Skills_data.line1Height)
+        setLine1Height(Skills_data.line1Height)
+        mainAnimate()
+    },[Skills_data.line1Width, Skills_data.line1Height, Skills_data.activeIndex])
 
     return (
         <Basement

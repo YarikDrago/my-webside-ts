@@ -12,6 +12,7 @@ const StyledSkillsSideBar = styled.nav`
   //height: 350px;
   height: 100%;
   width: 100px;
+  margin-left: 10px;
   //padding: 10px 5px 10px 10px;
   //grid-row-gap: 20px; 
   //grid-auto-rows: 100px;
@@ -29,6 +30,7 @@ const StyledSkillsSideBar = styled.nav`
     height: 100px;
     width: 100%;
     //padding: 10px 20px 0 20px;
+    margin-left: 0;
     margin-bottom: 5px;
     //padding-right: 20px;
     //padding-left: 20px;
@@ -72,7 +74,7 @@ const SkillsSidebar_v2 = () => {
 
 
     function resizeResponseSkillBox(){
-        // console.log("resize response skill box")
+        console.log("resize response skill box")
         changeSkillCellSide()
         recountActiveSkillCellPosition()
     }
@@ -95,13 +97,22 @@ const SkillsSidebar_v2 = () => {
         const barElem = refSkillsSideBar.current as HTMLElement
         const cellsArr = barElem.getElementsByTagName('div')
         const activeCellElem = cellsArr[Skills_data.activeIndex] as HTMLElement
+        const centerXOfCell = activeCellElem.offsetLeft + activeCellElem.offsetWidth / 2
+        const centerYOfCell = activeCellElem.offsetTop + activeCellElem.offsetHeight / 2
         if (window.innerWidth >= 800){
+            // recount for vertical lines
+            console.log("padding of bar", (refSkillsSideBar.current as HTMLElement).style.paddingTop)
+            Skills_data.setLine1Height(centerYOfCell)
+            Skills_data.setLine1Width(centerXOfCell)
             // console.log(activeCellElem.offsetTop, activeCellElem.offsetHeight)
         } else {
             // console.log(activeCellElem.offsetLeft, activeCellElem.offsetWidth)
-            const centerXOfCell = activeCellElem.offsetLeft + activeCellElem.offsetWidth / 2
-            Skills_data.setLine1Height(centerXOfCell)
+            // const centerXOfCell = activeCellElem.offsetLeft + activeCellElem.offsetWidth / 2
+            // const centerYOfCell = activeCellElem.offsetHeight + activeCellElem.offsetHeight / 2
+            Skills_data.setLine1Height(centerYOfCell)
+            // Skills_data.setLine1Height(100)
             Skills_data.setLine1Width(centerXOfCell)
+            // Skills_data.setLine1Width(100)
         }
         // if (window.innerHeight < 500){
         //

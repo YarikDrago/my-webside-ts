@@ -231,7 +231,7 @@ const SkillAnimatedLines_h_up = observer(() => {
 
     // redraw line and reset line center position if center of active cell is changing
     useEffect(()=>{
-        console.log("redraw line")
+        // console.log("redraw horizontal line")
         setLine1Height(Skills_data.line1Width)
         mainAnimate()
     },[Skills_data.line1Width, Skills_data.line1Height])

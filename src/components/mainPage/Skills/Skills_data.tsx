@@ -40,7 +40,7 @@ class Skills_data{
 
     activeIndex = 0
     changeActiveIndex(newIndex : number){
-        // console.log("active index", newIndex)
+        console.log("new active cell index", newIndex)
         this.activeIndex = newIndex
     }
 

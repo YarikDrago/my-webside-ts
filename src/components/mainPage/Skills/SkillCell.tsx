@@ -1,6 +1,7 @@
 import React, {useEffect, useRef} from 'react';
 import styled from 'styled-components'
 import PercentageRoundCanvas from "../../additionComponents/percentageRoundCanvas/PercentageRoundCanvas";
+import PercentageRoundCanvasIntersectionIn from '../../additionComponents/percentageRoundCanvas/PercentageRoundCanvasIntersectionIn';
 import Skills_data from "./Skills_data";
 
 const Cell = styled.div<{skillCellSide? : number}>`
@@ -40,6 +41,8 @@ interface ISkillCell{
 }
 const SkillCell = ({percentValue, imgPath, skillCellSide, key, index}: ISkillCell) => {
     const refSkillCell = useRef(null)
+
+
 
     // skill cell with index "0" is preselected
     useEffect(()=>{
@@ -112,7 +115,8 @@ const SkillCell = ({percentValue, imgPath, skillCellSide, key, index}: ISkillCel
             }}
             // onMouseOver={()=>{console.log("mouse over")}}
         >
-            <PercentageRoundCanvas percentage={percentValue} diameter={skillCellSide}/>
+            {/*<PercentageRoundCanvas percentage={percentValue} diameter={skillCellSide}/>*/}
+            <PercentageRoundCanvasIntersectionIn percentage={percentValue} diameter={skillCellSide}/>
             <SkillImg
                 // onMouseEnter={()=>{console.log("mouse on img")}}
                 src={require('./'+ imgPath).default}/>

@@ -5,6 +5,7 @@ import AboutMe from "./AboutMe/AboutMe";
 import Skills from "./Skills/Skills";
 import FootballBtn from "./footballPredictionTournament/footballBtn/FootballBtn";
 import SkillsV2 from "./Skills/Skills_v2";
+import NewsFeed from "./newsFeed/NewsFeed";
 
 const Basement = styled.main`
   position: relative;
@@ -15,6 +16,7 @@ const MainPage_v1 = () => {
         <Basement>
             <ShortAboutMe/>
             <FootballBtn/>
+            {/*<NewsFeed/>*/}
             <AboutMe/>
             <SkillsV2/>
         </Basement>
