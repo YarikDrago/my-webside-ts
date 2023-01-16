@@ -10,6 +10,7 @@ import FootballModal from "./components/mainPage/footballPredictionTournament/fo
 import TestPage from "./components/testPage/TestPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import TestLinksPage from "./components/TestLinksPage/TestLinksPage";
+import TestApi from "./components/testClinker/TestApi";
 
 const App = observer(() => {
     return (
@@ -19,8 +20,8 @@ const App = observer(() => {
                 <Route path={'/test_pages'} element={<TestLinksPage/>}/>
                 <Route path={'/football'} element={<FootballModal/>}/>
                 <Route path={'/test_page'} element={<TestPage/>}/>
+                <Route path={'/testapi'} element={<TestApi/>}/>
                 <Route path={'/*'} element={<ErrorPage/>}/>
-
             </Routes>
             <NavbarHeader_v1/>
             <ContactMeModalV2 status={contactMe_data.modalVisibility}/>
