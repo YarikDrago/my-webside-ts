@@ -1,6 +1,11 @@
 import React from 'react';
 
 const TestGitPage = () => {
+
+    function iter(num: number){
+        return -num
+    }
+
     return (
         <div>
             <h1>Test GIT page</h1>
