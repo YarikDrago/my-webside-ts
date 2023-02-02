@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import styled from 'styled-components'
 import axios from "axios";
+import AuthBlock from "./clinker/AuthBlock";
 
 const Basement = styled.section`
   position: absolute;
@@ -17,20 +18,10 @@ const TestPage = () => {
 
     },[])
 
-    // async function getTestData(){
-    //     try{
-    //         await axios.get('http://localhost:6600/test_https').then(res => {
-    //             console.log("response", res.data)
-    //         })
-    //     } catch (e) {
-    //         console.log("data error")
-    //     }
-    // }
-
     return (
         <Basement>
             <h1>Test Page</h1>
-
+            <AuthBlock/>
         </Basement>
     );
 };
