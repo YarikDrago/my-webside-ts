@@ -11,6 +11,7 @@ import TestPage from "./components/testPage/TestPage";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import TestLinksPage from "./components/TestLinksPage/TestLinksPage";
 import TestApi from "./components/testClinker/TestApi";
+import TestGitPage from "./components/testGitPage/TestGitPage";
 
 const App = observer(() => {
     return (
@@ -21,6 +22,7 @@ const App = observer(() => {
                 <Route path={'/football'} element={<FootballModal/>}/>
                 <Route path={'/test_page'} element={<TestPage/>}/>
                 <Route path={'/testapi'} element={<TestApi/>}/>
+                <Route path={'/testgitpage'} element={<TestGitPage/>}/>
                 <Route path={'/*'} element={<ErrorPage/>}/>
             </Routes>
             <NavbarHeader_v1/>
